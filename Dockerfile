@@ -12,7 +12,7 @@ FROM debian:10.9-slim
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y vim curl wget net-tools procps jq \
         ca-certificates; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*; \
