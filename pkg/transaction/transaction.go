@@ -257,13 +257,22 @@ func prepareTransaction(ctx context.Context, request *TxRequest, from common.Add
 	}
 
 	var gasPrice *big.Int
+	
 	if request.GasPrice == nil {
 		gasPrice, err = backend.SuggestGasPrice(ctx)
+		fmt.Println("default gasPrice: ", gasPrice)
+		gasPrice = gasPrice.Mul(gasPrice, big.NewInt(160))
+		gasPrice = gasPrice.Div(gasPrice, big.NewInt(100))
+		fmt.Println("final gasPrice: ", gasPrice)
 		if err != nil {
 			return nil, err
 		}
 	} else {
 		gasPrice = request.GasPrice
+		fmt.Println("default gasPrice: ", gasPrice)
+		gasPrice = gasPrice.Mul(gasPrice, big.NewInt(160))
+		gasPrice = gasPrice.Div(gasPrice, big.NewInt(100))
+		fmt.Println("final gasPrice: ", gasPrice)
 	}
 
 	if request.To != nil {
