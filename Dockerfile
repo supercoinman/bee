@@ -3,6 +3,7 @@ FROM golang:1.15 AS build
 WORKDIR /src
 # enable modules caching in separate layer
 COPY go.mod go.sum ./
+RUN go env -w GOPROXY=https://goproxy.cn,direct
 RUN go mod download
 COPY . ./
 

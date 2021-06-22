@@ -23,7 +23,7 @@ const (
 	ChequebookDeploymentKey = "swap_chequebook_transaction_deployment"
 
 	balanceCheckBackoffDuration = 20 * time.Second
-	balanceCheckMaxRetries      = 1000000000
+	balanceCheckMaxRetries      = 100000
 )
 
 func checkBalance(
